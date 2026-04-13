@@ -1,0 +1,48 @@
+service: shipmora-backend
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${env:AWS_REGION, 'ap-south-1'}
+  stage: ${opt:stage, 'dev'}
+  timeout: 30
+  memorySize: 512
+  environment:
+    NODE_ENV: production
+    APP_NAME: ${env:APP_NAME}
+    APP_BASE_URL: ${env:APP_BASE_URL}
+    FRONTEND_URL: ${env:FRONTEND_URL}
+    ALLOWED_ORIGINS: ${env:ALLOWED_ORIGINS}
+    SUPABASE_URL: ${env:SUPABASE_URL}
+    SUPABASE_ANON_KEY: ${env:SUPABASE_ANON_KEY}
+    SUPABASE_SERVICE_ROLE_KEY: ${env:SUPABASE_SERVICE_ROLE_KEY}
+    SUPABASE_JWT_SECRET: ${env:SUPABASE_JWT_SECRET}
+    APP_JWT_SECRET: ${env:APP_JWT_SECRET}
+    APP_JWT_EXPIRES_IN: ${env:APP_JWT_EXPIRES_IN}
+    GOOGLE_CLIENT_ID: ${env:GOOGLE_CLIENT_ID}
+    AWS_REGION: ${env:AWS_REGION}
+    AWS_ACCESS_KEY_ID: ${env:AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${env:AWS_SECRET_ACCESS_KEY}
+    SES_FROM_EMAIL: ${env:SES_FROM_EMAIL}
+    OTP_EXPIRY_MINUTES: ${env:OTP_EXPIRY_MINUTES}
+    OTP_RESEND_COOLDOWN_SECONDS: ${env:OTP_RESEND_COOLDOWN_SECONDS}
+    PASSWORD_RESET_REDIRECT_URL: ${env:PASSWORD_RESET_REDIRECT_URL}
+
+functions:
+  api:
+    handler: src/handler.handler
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+      - httpApi:
+          path: /
+          method: ANY
+
+package:
+  patterns:
+    - "!node_modules/.cache/**"
+    - "!coverage/**"
+    - "!tests/**"
