@@ -94,7 +94,7 @@ export const PRODUCTS = [
   { id: 2, name: "Slim Fit Shirt", price: 1299, orig: 2499, cat: "mens", rating: 4.5, reviews: 876, badge: "", emoji: "👔", color: "#16213e" },
   { id: 3, name: "Ceramic Pan Set", price: 3499, orig: 5999, cat: "home", rating: 4.7, reviews: 1203, badge: "", emoji: "🍳", color: "#0f3460" },
   { id: 4, name: "Kids Learning Tablet", price: 5999, orig: 8999, cat: "toys", rating: 4.6, reviews: 654, badge: "", emoji: "📱", color: "#533483" },
-  { id: 5, name: "Yoga Mat Pro", price: 1899, orig: 2999, cat: "sports", rating: 4.9, reviews: 3201, badge: "Bestseller", emoji: "🧘", color: "#e94560" },
+  { id: 5, name: "Nike shoe", price: 1899, orig: 2999, cat: "sports", rating: 4.9, reviews: 3201, badge: "Bestseller", color: "#e94560", image: "https://rdhtfjsjrdrcwybwfxgc.supabase.co/storage/v1/object/public/product-images/Nike.jpg"},
   { id: 6, name: "Floral Ethnic Kurta", price: 1599, orig: 2999, cat: "womens", rating: 4.4, reviews: 421, badge: "", emoji: "👗", color: "#b8316a" },
   { id: 7, name: "Car Dash Camera 4K", price: 4599, orig: 7999, cat: "auto", rating: 4.6, reviews: 987, badge: "", emoji: "📷", color: "#2d6a4f" },
   { id: 8, name: "Premium Leather Bag", price: 2999, orig: 4999, cat: "bags", rating: 4.7, reviews: 1543, badge: "Bestseller", emoji: "🎒", color: "#774936" },
