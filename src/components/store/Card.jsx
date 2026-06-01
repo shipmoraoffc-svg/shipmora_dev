@@ -28,8 +28,7 @@ export default function Card({ p, setCart, wl, setWl, user, onLogin }) {
       onMouseEnter={(event) => { event.currentTarget.style.transform = "translateY(-4px)"; event.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.12)"; }}
       onMouseLeave={(event) => { event.currentTarget.style.transform = "none"; event.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}
     >
-      <div style={{ height: 170, background: `linear-gradient(135deg,${p.color}22,${p.color}44)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 68, position: "relative" }}>
-        {p.emoji}
+      <div style={{ height: 170, position: "relative", overflow: "hidden", background: "#f3f4f6" }}>{p.image ? (<img src={p.image} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />) : (<div style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 68, background: `linear-gradient(135deg,${p.color}22,${p.color}44)` }}>{p.emoji}</div>)}
         {p.badge && <span style={{ position: "absolute", top: 10, left: 10, background: "#f59e0b", color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 9px", borderRadius: 20 }}>{p.badge}</span>}
         <span style={{ position: "absolute", bottom: 10, left: 10, background: "linear-gradient(135deg,#10b981,#059669)", color: "#fff", fontSize: 10, fontWeight: 800, padding: "3px 9px", borderRadius: 20 }}>{disc}% off</span>
         <button onClick={toggleWishlist} style={{ position: "absolute", top: 10, right: 10, background: wished ? "#fee2e2" : "rgba(255,255,255,0.9)", border: "none", borderRadius: "50%", width: 30, height: 30, cursor: "pointer", fontSize: 15 }}>
