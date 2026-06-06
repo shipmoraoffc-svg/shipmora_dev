@@ -1,6 +1,9 @@
+import { useState } from "react";
+
 export default function CartDrawer({ cart, setCart, onClose, user, onLogin }) {
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const qty = cart.reduce((sum, item) => sum + item.qty, 0);
+  const [imgErrors, setImgErrors] = useState({});
 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 1000 }}>
@@ -23,7 +26,7 @@ export default function CartDrawer({ cart, setCart, onClose, user, onLogin }) {
           ) : (
             cart.map((item) => (
               <div key={item.id} style={{ display: "flex", gap: 12, padding: "12px 0", borderBottom: "1px solid #f9fafb", alignItems: "center" }}>
-                <div style={{ width: 54, height: 54, borderRadius: 12, background: `${item.color}22`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, flexShrink: 0 }}>{item.emoji}</div>
+                <div style={{ width: 54, height: 54, borderRadius: 12, background: `${item.color}22`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, flexShrink: 0, overflow: "hidden" }}>{item.image && !imgErrors[item.id] ? <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={() => setImgErrors(prev => ({ ...prev, [item.id]: true }))} /> : item.emoji}</div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p style={{ margin: "0 0 4px", fontSize: 13, fontWeight: 700, color: "#111827", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.name}</p>
                   <p style={{ margin: "0 0 6px", fontSize: 14, fontWeight: 800, color: "#6366f1" }}>₹{(item.price * item.qty).toLocaleString()}</p>

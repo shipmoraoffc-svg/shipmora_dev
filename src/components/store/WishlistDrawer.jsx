@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export default function WishlistDrawer({ wl, setWl, setCart, onClose }) {
+  const [imgErrors, setImgErrors] = useState({});
+
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 1000 }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.5)" }} />
@@ -21,7 +25,7 @@ export default function WishlistDrawer({ wl, setWl, setCart, onClose }) {
           ) : (
             wl.map((product) => (
               <div key={product.id} style={{ display: "flex", gap: 12, padding: "12px 0", borderBottom: "1px solid #f9fafb", alignItems: "center" }}>
-                <div style={{ width: 52, height: 52, borderRadius: 11, background: `${product.color}22`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26 }}><img src={product.image} alt={product.name} style={{width: "100%", height: "100%", objectFit: "cover"}}/></div>
+                <div style={{ width: 52, height: 52, borderRadius: 11, background: `${product.color}22`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, overflow: "hidden" }}>{product.image && !imgErrors[product.id] ? <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={() => setImgErrors(prev => ({ ...prev, [product.id]: true }))} /> : product.emoji}</div>
                 <div style={{ flex: 1 }}>
                   <p style={{ margin: "0 0 3px", fontSize: 13, fontWeight: 700, color: "#111827" }}>{product.name}</p>
                   <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: "#6366f1" }}>₹{product.price.toLocaleString()}</p>
